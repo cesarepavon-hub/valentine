@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        body {
+            background-color: #FFB6C1;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #siBtn {
+            background-color: #FF69B4;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #808080;
+            color: white;
+            /* El botón comienza en su posición normal en el flujo del documento */
+            position: relative;
+        }
+
+        #noBtn.moving {
+            /* Esta clase se añadirá cuando el botón deba moverse */
+            position: fixed;
+        }
+
+        #mensajeFinal {
+            display: none;
+            color: white;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Quieres ser mi San Valentín?</h1>
+        <div class="buttons">
+            <button id="siBtn" onclick="mostrarMensaje()">Sí</button>
+            <button id="noBtn" onmouseover="moverBoton()">No</button>
+        </div>
+        <h2 id="mensajeFinal">Quiero que seas siempre tú ❤️</h2>
+    </div>
+
+    <script>
+        function moverBoton() {
+            const noBtn = document.getElementById('noBtn');
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+            
+            // Añadir la clase que cambia el posicionamiento a fixed
+            noBtn.classList.add('moving');
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function mostrarMensaje() {
+            document.querySelector('.buttons').style.display = 'none';
+            document.querySelector('h1').style.display = 'none';
+            document.getElementById('mensajeFinal').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
